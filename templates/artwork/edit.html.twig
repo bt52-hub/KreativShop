@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modify Artwork — KreativShop{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <div class="ks-card">
+        <h1 class="ks-card-title">Modify : {{ artwork.title }}</h1>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+            {{ form_row(form.title, {'attr': {'class': 'ks-input'}}) }}
+            {{ form_row(form.imageFile) }}
+            {{ form_row(form.submit) }}
+        {{ form_end(form) }}
+
+        <a href="{{ path('app_dashboard_artist') }}" class="ks-btn-secondary mt-3">Back</a>
+    </div>
+</div>
+{% endblock %}

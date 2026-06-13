@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="row justify-content-center">
+			<div class="col-md-5">
+				<div class="ks-card">
+					<h1 class="ks-card-title">Register</h1>
+
+					{{ form_start(form, {
+                    'method': 'POST',
+                    'action': path('app_register'),
+                    'attr': {'novalidate': 'novalidate'}
+                }) }}
+
+					{{ form_widget(form.email, {'attr': {'class': 'ks-input', 'placeholder': 'Email'}}) }}
+					<span class="form-error-message">{{ form_errors(form.email) }}</span>
+
+					{{ form_widget(form.firstname, {'attr': {'class': 'ks-input', 'placeholder': 'Firstname'}}) }}
+					<span class="form-error-message">{{ form_errors(form.firstname) }}</span>
+
+					{{ form_widget(form.name, {'attr': {'class': 'ks-input', 'placeholder': 'Name'}}) }}
+					<span class="form-error-message">{{ form_errors(form.name) }}</span>
+
+					{{ form_widget(form.plainPassword.first, {'attr': {'class': 'ks-input', 'placeholder': 'Password'}}) }}
+					{{ form_widget(form.plainPassword.second, {'attr': {'class': 'ks-input', 'placeholder': 'Confirm password'}}) }}
+					<span class="form-error-message">{{ form_errors(form.plainPassword) }}</span>
+
+					<p class="text-muted mt-2" style="font-size:0.85rem">
+						Please, determinate your profil<br>
+						<em>(you can choose later on your dashboard)</em>
+					</p>
+
+					<div class="d-flex gap-3 justify-content-center mb-3">
+						{% for child in form.role %}
+							<label class="ks-btn-outline" data-role-label>
+								{{ form_widget(child, {'attr': {'style': 'position:absolute; opacity:0; width:0; height:0;'}}) }}
+								{{ child.vars.label }}
+							</label>
+						{% endfor %}
+					</div>
+
+					<div class="d-flex align-items-start gap-2 mb-3">
+						{{ form_widget(form.agreeTerms) }}
+						<label for="{{ form.agreeTerms.vars.id }}" style="font-size:0.85rem">
+							<u>By checking this box, you are agreeing to our terms of service.</u>
+						</label>
+					</div>
+					<span class="form-error-message">{{ form_errors(form.agreeTerms) }}</span>
+
+					<button type="submit" class="ks-btn-primary">REGISTER</button>
+
+					{{ form_end(form) }}
+
+					<a href="{{ path('app_login') }}" class="ks-btn-secondary mt-3">Have an account, log in</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

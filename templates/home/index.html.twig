@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}KreativShop — Art
+{% endblock %}
+
+{% block body %}
+
+	{# ===== NEWS : carrousel ===== #}
+	<div class="ks-section-bar">
+		<img src="{{ asset('images/picto_logo_ks_B.png') }}" alt="" height="18">
+		<em>NEWS : Our hots arrivals</em>
+	</div>
+
+	<div class="position-relative ks-carousel-wrapper">
+		<button class="ks-carousel-btn ks-carousel-prev" id="carouselPrev">&#8249;</button>
+
+		<div class="ks-carousel-track" id="carouselTrack">
+			{% for artwork in newArtworks %}
+				<div class="ks-carousel-item">
+					{% if artwork.fileUrl %}
+						<img src="{{ asset('uploads/artworks/' ~ artwork.fileUrl) }}" alt="{{ artwork.title }}">
+					{% else %}
+						<div class="ks-artwork-placeholder"></div>
+					{% endif %}
+					<div class="ks-carousel-overlay">
+						<span>"{{ artwork.title }}"</span>
+						<a href="{{ path('app_product_show', {id: artwork.id}) }}">+ Shop</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<button class="ks-carousel-btn ks-carousel-next" id="carouselNext">&#8250;</button>
+	</div>
+
+	{# ===== DISCOVER : Artist Review ===== #}
+	<div class="ks-section-bar">
+		<img src="{{ asset('images/picto_logo_ks_B.png') }}" alt="" height="18">
+		<em>DISCOVER : Artist Review</em>
+	</div>
+
+	{% if lastArtist %}
+		<div class="ks-discover-section">
+			<div class="ks-discover-images">
+				{% for artwork in discoverArtworks %}
+					<img src="{{ asset('uploads/artworks/' ~ artwork.fileUrl) }}" alt="{{ artwork.title }}" class="ks-discover-img">
+				{% else %}
+					<div class="ks-discover-placeholder"></div>
+				{% endfor %}
+			</div>
+			<div class="ks-discover-text">
+				<h2>{{ lastArtist.pseudo }}</h2>
+				<p>{{ lastArtist.bio ?? 'Discover this artist and his creations on KreativShop.' }}</p>
+				<a href="{{ path('app_artist_show', {id: lastArtist.id}) }}" class="ks-btn-go-artist">Go to Artist</a>
+			</div>
+		</div>
+	{% endif %}
+
+	{# ===== BESTSELLERS ===== #}
+	<div class="ks-section-bar">
+		<img src="{{ asset('images/picto_logo_ks_B.png') }}" alt="" height="18">
+		<em>BESTSELLERS</em>
+	</div>
+
+	<div class="ks-bestsellers-grid">
+		{% for artwork in bestsellerArtworks %}
+			<div class="ks-bestseller-item {% if loop.index == 1 %}ks-bestseller-large{% endif %}">
+				{% if artwork.fileUrl %}
+					<img src="{{ asset('uploads/artworks/' ~ artwork.fileUrl) }}" alt="{{ artwork.title }}">
+				{% endif %}
+				<div class="ks-bestseller-overlay">
+					<span>"{{ artwork.title }}"</span>
+					<a href="{{ path('app_product_show', {id: artwork.id}) }}">+ Shop</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}

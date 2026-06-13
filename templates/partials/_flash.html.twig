@@ -1,0 +1,8 @@
+<div class="container mt-3">
+	{% for message in app.flashes('success') %}
+		<div class="ks-flash-success">{{ message }}</div>
+	{% endfor %}
+	{% for message in app.flashes('error') %}
+		<div class="ks-flash-error">{{ message }}</div>
+	{% endfor %}
+</div>

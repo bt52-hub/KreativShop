@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modify my profile — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-4">
+		<div class="ks-card">
+			<h1 class="ks-card-title">My profile</h1>
+
+			{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'enctype': 'multipart/form-data'}}) }}
+			{{ form_row(form.firstname, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.name, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.pseudo, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.address, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.avatarFile) }}
+			{{ form_row(form.submit) }}
+			{{ form_end(form) }}
+		</div>
+	</div>
+
+	<div class="container">
+		<a href="javascript:history.back()" class="ks-btn-secondary mt-3">Back</a>
+	</div>
+{% endblock %}

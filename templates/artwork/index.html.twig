@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Artworks — KreativShop{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <div class="ks-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="ks-card-title mb-0">My Artworks</h1>
+            <a href="{{ path('app_artwork_new') }}" class="ks-btn-primary" style="width:auto; padding: 0.5rem 1.5rem">
+                + Add
+            </a>
+        </div>
+
+        {% if artworks is empty %}
+            <p class="text-muted">No artwork for the moment.</p>
+        {% else %}
+            <div class="row g-3">
+                {% for artwork in artworks %}
+                    <div class="col-md-4">
+                        <div class="ks-artwork-thumb position-relative">
+                            {% if artwork.fileUrl %}
+                                <img src="{{ asset('uploads/artworks/' ~ artwork.fileUrl) }}"
+                                     alt="{{ artwork.title }}"
+                                     class="img-fluid rounded w-100"
+                                     style="height: 200px; object-fit: cover;">
+                            {% endif %}
+                            <p class="mt-2 fw-bold">{{ artwork.title }}</p>
+                            <div class="d-flex gap-2">
+                                <a href="{{ path('app_artwork_edit', {id: artwork.id}) }}"
+                                   class="ks-btn-outline" style="font-size:0.85rem; padding: 0.3rem 1rem">
+                                   Modify
+                                </a>
+                                <form method="post" action="{{ path('app_artwork_delete', {id: artwork.id}) }}"
+                                      onsubmit="return confirm('Supprimer cet artwork ?')">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ artwork.id) }}">
+                                    <button type="submit" class="ks-btn-primary"
+                                            style="width:auto; padding: 0.3rem 1rem; font-size:0.85rem; background-color:#dc3545">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

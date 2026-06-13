@@ -5,7 +5,10 @@ security:
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
 
     firewalls:
         dev:
@@ -14,7 +17,17 @@ security:
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                enable_csrf: true
+                default_target_path: app_dashboard
+            logout:
+                path: app_logout
+                target: app_home
+                # where to redirect after logout
+                # target: app_any_route
 
             # Activate different ways to authenticate:
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -26,6 +39,28 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+        # Pages publiques - pas de restriction
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/register, roles: PUBLIC_ACCESS }
+        - { path: ^/$, roles: PUBLIC_ACCESS }
+        - { path: ^/discover, roles: PUBLIC_ACCESS }
+        - { path: ^/bestsellers, roles: PUBLIC_ACCESS }
+        - { path: ^/search, roles: PUBLIC_ACCESS }
+        - { path: ^/artist, roles: PUBLIC_ACCESS }
+        - { path: ^/product, roles: PUBLIC_ACCESS }
+        - { path: ^/contact, roles: PUBLIC_ACCESS }
+
+        # Dashboard artiste
+        - { path: ^/dashboard/artist, roles: ROLE_ARTIST }
+
+        # Dashboard customer
+        - { path: ^/dashboard/customer, roles: ROLE_CUSTOMER }
+
+        # Pages connectées (les deux rôles)
+        - { path: ^/dashboard, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/order, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/account, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

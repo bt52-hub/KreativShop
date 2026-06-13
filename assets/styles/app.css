@@ -1,3 +1,712 @@
+/* ===== CHARTE KREATIVSHOP ===== */
+:root {
+    --ks-navy: #071033;
+    --ks-gold: #EEDF6D;
+    --ks-blue: #286CFC;
+    --ks-bg: #BCC5D9;
+    --ks-white: #ffffff;
+    --ks-font: 'Roboto', sans-serif;
+}
+
 body {
-    background-color: skyblue;
+    background-color: var(--ks-bg) !important;
+    font-family: var(--ks-font) !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== NAVBAR ===== */
+.ks-navbar {
+    background-color: var(--ks-navy);
+    border-bottom: 2px solid var(--ks-gold);
+    padding: 0.75rem 2rem;
+}
+
+.ks-logo-kreativ {
+    color: var(--ks-gold);
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.ks-logo-shop {
+    color: var(--ks-gold);
+    font-style: italic;
+    font-weight: 400;
+}
+
+.ks-navbar .nav-link {
+    color: var(--ks-white) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.ks-navbar .nav-link:hover,
+.ks-navbar .nav-link.active {
+    color: var(--ks-gold) !important;
+    border-bottom: 3px solid var(--ks-blue);
+}
+
+.ks-btn-signup {
+    color: var(--ks-blue) !important;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.ks-btn-login {
+    color: var(--ks-gold) !important;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.ks-basket {
+    color: var(--ks-white);
+    text-align: center;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+/* ===== CARDS FORMULAIRES ===== */
+.ks-card {
+    background: var(--ks-white);
+    border: 2px solid var(--ks-gold);
+    border-radius: 12px;
+    padding: 2.5rem;
+}
+
+.ks-card-title {
+    color: var(--ks-blue);
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* ===== INPUTS ===== */
+.ks-input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.65rem 1rem;
+    width: 100%;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.ks-input:focus {
+    border-color: var(--ks-blue);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(43, 79, 204, 0.15);
+    color: #333;
+}
+
+/* ===== BOUTONS ===== */
+.ks-btn-primary {
+    background-color: var(--ks-navy);
+    color: var(--ks-gold);
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    width: 100%;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.ks-btn-primary:hover {
+    background-color: #1a2d5a;
+}
+
+.ks-btn-secondary {
+    background-color: var(--ks-gold);
+    color: var(--ks-navy);
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    width: 100%;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.ks-btn-secondary:hover {
+    background-color: #e0b000;
+    color: var(--ks-navy);
+}
+
+.ks-btn-outline {
+    background: transparent;
+    border: 2px solid var(--ks-blue);
+    color: var(--ks-blue);
+    border-radius: 6px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ks-btn-outline:hover,
+.ks-btn-outline.active {
+    background-color: var(--ks-blue);
+    color: var(--ks-white);
+}
+
+/* Bouton submit Symfony dans les formulaires */
+[type="submit"] {
+    background-color: var(--ks-navy);
+    color: var(--ks-gold);
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    width: 100%;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+[type="submit"]:hover {
+    background-color: #1a2d5a;
+}
+
+/* ===== FOOTER ===== */
+.ks-footer {
+    background-color: var(--ks-navy);
+    color: var(--ks-white);
+    margin-top: auto;
+}
+
+.ks-footer .bi {
+    color: var(--ks-blue);
+}
+
+.ks-footer .bi:hover {
+    color: var(--ks-gold);
+    transition: 0.3s;
+}
+
+.ks-footer-logo {
+    color: var(--ks-gold);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.ks-footer-divider {
+    border-color: var(--ks-gold);
+    opacity: 1;
+}
+
+.ks-footer h6 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.ks-footer a {
+    color: var(--ks-white);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+}
+
+.ks-footer a:hover {
+    color: var(--ks-gold);
+}
+
+.ks-footer-newsletter input {
+    border-radius: 4px;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.ks-footer-newsletter .ks-btn-subscribe {
+    background-color: var(--ks-gold);
+    color: var(--ks-navy);
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ks-footer-links {
+    background-color: var(--ks-bg);
+    padding: 12px 0;
+}
+
+.ks-footer-bottom {
+    background-color: var(--ks-navy);
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.ks-payment-icon {
+    width: 48px;
+    height: 30px;
+    object-fit: contain;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 2px;
+    background: white;
+    margin: 2px;
+}
+
+/* ===== FLASH MESSAGES ===== */
+.ks-flash-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.ks-flash-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* Erreurs formulaire */
+.form-error-message,
+ul.form-errors li {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: -0.75rem;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.ks-input.is-invalid {
+    border-color: #dc3545;
+}
+
+/* ===== DASHBOARD ===== */
+.ks-avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ks-avatar-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--ks-blue);
+}
+
+.ks-avatar-placeholder {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ks-avatar-modify {
+    font-size: 0.8rem;
+    color: var(--ks-blue);
+    font-style: italic;
+    text-decoration: none;
+    margin-top: 4px;
+}
+
+.ks-dashboard-username {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--ks-navy);
+}
+
+.ks-dashboard-welcome {
+    font-size: 1.3rem;
+    color: #aaa;
+}
+
+.ks-section-title {
+    color: var(--ks-blue);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.ks-profile-card {
+    border: 1.5px solid var(--ks-blue);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background: #fff;
+}
+
+.ks-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.ks-artwork-thumb {
+    padding: 0.5rem;
+}
+
+/* ===== BOUTON BECOME ARTIST ===== */
+.ks-btn-become-artist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--ks-navy);
+    border: 2px solid var(--ks-blue);
+    border-radius: 6px;
+    padding: 0.4rem 1rem;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.become-text {
+    color: var(--ks-white);
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.become-artist {
+    color: var(--ks-gold);
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Preview image VichUploader */
+.vich-image {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+}
+
+.vich-image img {
+    max-width: 600px;
+    border-radius: 6px;
+}
+
+/* HOMEPAGE */
+
+/* ===== SECTION BAR ===== */
+.ks-section-bar {
+    background-color: var(--ks-bg);
+    padding: 0.5rem 1.5rem;
+    font-style: italic;
+    color: var(--ks-navy);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* ===== CARROUSEL ===== */
+.ks-carousel-wrapper {
+    background-color: var(--ks-white);
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ks-carousel-track {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.4s ease;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+}
+
+.ks-carousel-item {
+    position: relative;
+    min-width: calc(25% - 0.75rem);
+    max-width: calc(25% - 0.75rem);
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ks-carousel-item img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.ks-carousel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.ks-carousel-overlay span {
+    color: white;
+    font-style: italic;
+}
+
+.ks-carousel-overlay a {
+    color: var(--ks-gold);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.ks-carousel-btn {
+    background: transparent;
+    border: none;
+    font-size: 3rem;
+    color: var(--ks-navy);
+    cursor: pointer;
+    padding: 0 0.5rem;
+    line-height: 1;
+    z-index: 10;
+}
+
+.ks-carousel-btn:hover {
+    color: var(--ks-gold);
+}
+
+.ks-artwork-placeholder {
+    width: 100%;
+    height: 260px;
+    background-color: #aaa;
+}
+
+/* ===== DISCOVER ===== */
+.ks-discover-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 3rem;
+    background-color: var(--ks-bg);
+}
+
+.ks-discover-images {
+    flex: 0 0 auto;
+}
+
+.ks-discover-img {
+    width: 280px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.ks-discover-placeholder {
+    width: 280px;
+    height: 320px;
+    background-color: #aaa;
+    border-radius: 6px;
+}
+
+.ks-discover-text {
+    flex: 1;
+}
+
+.ks-discover-text h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.ks-discover-text p {
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.ks-btn-go-artist {
+    background-color: var(--ks-blue);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.ks-btn-go-artist:hover {
+    background-color: #1a3aaa;
+    color: white;
+}
+
+/* ===== BESTSELLERS ===== */
+.ks-bestsellers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 4px;
+    padding: 1rem;
+    background-color: var(--ks-white);
+}
+
+.ks-bestseller-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.ks-bestseller-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.ks-bestseller-large {
+    grid-row: span 2;
+}
+
+.ks-bestseller-large img {
+    height: 100%;
+}
+
+.ks-bestseller-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+    color: white;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 0.85rem;
+}
+
+.ks-bestseller-overlay a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ===== PAGE PRODUIT ===== */
+.ks-product-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ks-navy);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.ks-product-img {
+    width: 100%;
+    max-height: 600px;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+
+    display: block;
+}
+
+.ks-product-img-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #ccc;
+    border-radius: 8px;
+}
+
+.ks-product-label {
+    color: var(--ks-blue);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.ks-product-artist {
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+.ks-product-description {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.ks-template-selector {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.ks-template-option {
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: border-color 0.2s;
+}
+
+.ks-template-option.active {
+    border-color: var(--ks-blue);
+    background-color: #f0f4ff;
+}
+
+.ks-product-btn-support {
+    border: 1.5px solid var(--ks-navy);
+    background: transparent;
+    border-radius: 4px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ks-product-btn-support.active {
+    background-color: var(--ks-navy);
+    color: white;
+}
+
+.ks-product-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: var(--ks-navy);
+    color: var(--ks-gold);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+}
+
+.ks-btn-buy {
+    background-color: var(--ks-blue);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.ks-btn-buy:hover {
+    background-color: #1a3aaa;
+    color: white;
 }

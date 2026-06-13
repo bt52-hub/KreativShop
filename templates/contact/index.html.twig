@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="ks-card">
+					<h1 class="ks-card-title">Contact</h1>
+
+					{{ form_start(form, {
+                    'method': 'POST',
+                    'action': path('app_contact'),
+                    'attr': {'novalidate': 'novalidate'}
+                }) }}
+
+					{{ form_widget(form.name) }}
+					<span class="form-error-message">{{ form_errors(form.name) }}</span>
+
+					{{ form_widget(form.email) }}
+					<span class="form-error-message">{{ form_errors(form.email) }}</span>
+
+					{{ form_widget(form.subject) }}
+					<span class="form-error-message">{{ form_errors(form.subject) }}</span>
+
+					{{ form_widget(form.message) }}
+					<span class="form-error-message">{{ form_errors(form.message) }}</span>
+
+					<button type="submit" class="ks-btn-primary mt-3">SEND</button>
+
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

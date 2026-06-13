@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}"{{ artwork.title }}" — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-4">
+		<div class="ks-card">
+
+			<h1 class="ks-product-title">"
+				{{ artwork.title }}
+				"</h1>
+
+			<div
+				class="row">
+				{# Image de l'artwork #}
+				<div class="col-md-5">
+					{% if artwork.fileUrl %}
+						<img src="{{ vich_uploader_asset(artwork, 'imageFile') }}" alt="{{ artwork.title }}" class="ks-product-img">
+					{% else %}
+						<div class="ks-product-img-placeholder"></div>
+					{% endif %}
+				</div>
+
+				{# Infos produit #}
+				<div class="col-md-7">
+
+					<p class="ks-product-label">Artist :</p>
+					<p class="ks-product-artist">{{ artwork.artist.pseudo }}</p>
+
+					<p class="ks-product-label mt-3">Description :</p>
+					<p class="ks-product-description">
+						{{ artwork.artist.bio ?? 'Découvrez cette œuvre unique disponible sur différents supports.' }}
+					</p>
+
+					{# Templates disponibles #}
+					{% if templates is not empty %}
+						<p class="ks-product-label mt-3">Features :</p>
+
+						<div class="ks-template-selector mb-3">
+							{% for template in templates %}
+								<div class="ks-template-option {% if loop.first %}active{% endif %}" data-template-id="{{ template.id }}" data-template-name="{{ template.name }}" data-template-width="{{ template.width }}" data-template-height="{{ template.height }}" data-products="{{ template.products|map(p => { id: p.id, type: p.type.value, price: p.finalPrice })|json_encode }}">
+									<p class="fw-bold mb-0">{{ template.name }}</p>
+									<p class="mb-0 small">{{ template.width }}
+										x
+										{{ template.height }}
+										cm</p>
+								</div>
+							{% endfor %}
+						</div>
+
+						<hr style="border-color: var(--ks-gold);">
+
+						<p class="ks-product-label">Select your template support :</p>
+
+						<div class="d-flex align-items-center justify-content-between mt-2">
+							<div
+								class="d-flex gap-2" id="product-buttons">{# Rempli dynamiquement par JS #}
+							</div>
+							<div class="d-flex align-items-center gap-3">
+								<span class="ks-product-price" id="product-price">—</span>
+								<a href="#" class="ks-btn-buy" id="btn-buy">
+									🛒 BUY
+								</a>
+							</div>
+						</div>
+
+					{% else %}
+						<p class="text-muted">Aucun support disponible pour cette œuvre.</p>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

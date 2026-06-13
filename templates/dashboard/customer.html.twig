@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Dashboard — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-4">
+		<div
+			class="ks-card position-relative">
+
+			{# Bouton Become Artist #}
+			<div class="position-absolute top-0 end-0 m-3">
+				<a href="{{ path('app_become_artist') }}" class="ks-btn-become-artist" onclick="return confirm('Voulez-vous vraiment devenir artiste sur KreativShop ?')">
+					<span class="become-text">Become</span>
+					<span class="become-artist">
+						<img src="{{ asset('images/btn_artist.png') }}" alt="" height="18">
+						Artist
+					</span>
+				</a>
+			</div>
+
+			<div
+				class="row">
+				{# Colonne gauche #}
+				<div
+					class="col-md-6">
+					{# Avatar + pseudo #}
+					<div class="d-flex align-items-end gap-3 mb-2">
+						<div class="ks-avatar-wrapper">
+							{% if user.avatar %}
+								<img src="{{ asset('uploads/avatars/' ~ user.avatar) }}" alt="avatar" class="ks-avatar-img">
+							{% else %}
+								<div class="ks-avatar-placeholder">
+									<i class="bi bi-person-fill fs-1 text-white"></i>
+								</div>
+							{% endif %}
+							<a href="{{ path('app_dashboard_customer_edit') }}" class="ks-avatar-modify">(Modify)</a>
+						</div>
+						<h2 class="ks-dashboard-username">
+							{{ user.pseudo is not empty ? user.pseudo : user.firstname }}
+						</h2>
+						<p class="ks-dashboard-welcome ms-auto text-muted">
+							Welcome back on your dashboard
+						</p>
+					</div>
+
+					{# My profile #}
+					<div class="d-flex align-items-center justify-content-between mb-2">
+						<h5 class="ks-section-title mb-0">My profile</h5>
+						<a href="{{ path('app_dashboard_customer_edit') }}">
+							<i class="bi bi-pencil-square fs-5" style="color: var(--ks-navy)"></i>
+						</a>
+					</div>
+
+					<div class="ks-profile-card">
+						{% if user.pseudo %}
+							<p class="fw-bold mb-1">{{ user.pseudo }}</p>
+						{% endif %}
+						<p class="mb-1">{{ user.firstname }}
+							{{ user.name }}</p>
+						<p class="mb-2 text-muted">{{ user.email }}</p>
+						{% if user.address %}
+							<p class="mb-0">{{ user.address }}</p>
+						{% endif %}
+					</div>
+				</div>
+
+				{# Colonne droite #}
+				<div class="col-md-6">
+					<h5 class="ks-section-title mt-5">My purchases</h5>
+					{% if orders is defined and orders is not empty %}
+						<ul class="list-unstyled">
+							{% for order in orders %}
+								<li class="ks-order-item">
+									<span>Commande #{{ order.id }}</span>
+									<span>{{ order.totalAmount }}€</span>
+									<span class="badge bg-primary">{{ order.status.value }}</span>
+								</li>
+							{% endfor %}
+						</ul>
+					{% else %}
+						<p class="text-muted">Aucune commande pour le moment.</p>
+					{% endif %}
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
