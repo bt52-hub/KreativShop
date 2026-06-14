@@ -16,7 +16,7 @@ body {
     flex-direction: column;
 }
 
-/* ===== NAVBAR ===== */
+/* ===== NAVBAR DESKTOP ===== */
 .ks-navbar {
     background-color: var(--ks-navy);
     border-bottom: 2px solid var(--ks-gold);
@@ -67,6 +67,96 @@ body {
     text-align: center;
     font-size: 0.75rem;
     text-decoration: none;
+}
+
+/* ===== BURGER ===== */
+.ks-burger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5rem;
+    width: 44px;
+    height: 44px;
+}
+
+.ks-burger-line {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--ks-gold);
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+.ks-burger.open .ks-burger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.ks-burger.open .ks-burger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.ks-burger.open .ks-burger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ===== MENU OVERLAY MOBILE ANIMÉ ===== */
+.ks-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--ks-navy);
+    z-index: 999;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.ks-mobile-menu.open {
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.ks-mobile-menu a {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.ks-mobile-menu a:hover {
+    color: var(--ks-gold);
+}
+
+.ks-mobile-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--ks-gold);
+    transition: width 0.3s ease;
+}
+
+.ks-mobile-menu a:hover::after {
+    width: 100%;
 }
 
 /* ===== CARDS FORMULAIRES ===== */
@@ -155,7 +245,6 @@ body {
     color: var(--ks-white);
 }
 
-/* Bouton submit Symfony dans les formulaires */
 [type="submit"] {
     background-color: var(--ks-navy);
     color: var(--ks-gold);
@@ -279,7 +368,6 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Erreurs formulaire */
 .form-error-message,
 ul.form-errors li {
     color: #dc3545;
@@ -391,7 +479,7 @@ ul.form-errors li {
     gap: 6px;
 }
 
-/* Preview image VichUploader */
+/* ===== VICH UPLOADER ===== */
 .vich-image {
     display: flex;
     flex-direction: column-reverse;
@@ -403,8 +491,6 @@ ul.form-errors li {
     border-radius: 6px;
 }
 
-/* HOMEPAGE */
-
 /* ===== SECTION BAR ===== */
 .ks-section-bar {
     background-color: var(--ks-bg);
@@ -413,6 +499,9 @@ ul.form-errors li {
     color: var(--ks-navy);
     font-weight: 500;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 /* ===== CARROUSEL ===== */
@@ -506,8 +595,17 @@ ul.form-errors li {
     background-color: var(--ks-bg);
 }
 
-.ks-discover-images {
-    flex: 0 0 auto;
+.ks-discover-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.ks-discover-card:last-child {
+    border-bottom: none;
 }
 
 .ks-discover-img {
@@ -522,10 +620,6 @@ ul.form-errors li {
     height: 320px;
     background-color: #aaa;
     border-radius: 6px;
-}
-
-.ks-discover-text {
-    flex: 1;
 }
 
 .ks-discover-text h2 {
@@ -547,6 +641,7 @@ ul.form-errors li {
     border-radius: 4px;
     text-decoration: none;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .ks-btn-go-artist:hover {
@@ -558,7 +653,6 @@ ul.form-errors li {
 .ks-bestsellers-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
     gap: 4px;
     padding: 1rem;
     background-color: var(--ks-white);
@@ -616,13 +710,9 @@ ul.form-errors li {
 .ks-product-img {
     width: 100%;
     max-height: 600px;
-
     height: auto;
-
     object-fit: contain;
-
     border-radius: 8px;
-
     display: block;
 }
 
@@ -709,4 +799,119 @@ ul.form-errors li {
 .ks-btn-buy:hover {
     background-color: #1a3aaa;
     color: white;
+}
+
+/* ===== RESPONSIVE MOBILE ===== */
+@media (max-width: 768px) {
+
+    /* Cache navbar desktop */
+    nav.ks-navbar,
+    .ks-navbar {
+        display: none !important;
+    }
+
+    /* Header mobile */
+    .ks-mobile-header {
+        display: flex !important;
+        background-color: var(--ks-navy);
+        border-bottom: 2px solid var(--ks-gold);
+        padding: 0.75rem 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Navbar burger fixe en bas */
+    .ks-mobile-nav {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--ks-navy);
+        
+        border-top: 2px solid var(--ks-gold);
+        z-index: 1000;
+        padding: 0.75rem 0;
+        justify-content: center;
+    }
+
+    /* Grille 2 colonnes */
+    .ks-bestsellers-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .ks-bestseller-large {
+        grid-row: span 1 !important;
+    }
+
+    .ks-bestseller-item img {
+        height: 160px !important;
+    }
+
+    /* Carrousel 2 items */
+    .ks-carousel-item {
+        min-width: calc(50% - 0.5rem) !important;
+        max-width: calc(50% - 0.5rem) !important;
+    }
+
+    /* Cards */
+    .ks-card {
+        margin: 0.5rem;
+        padding: 1.25rem;
+    }
+
+    /* Discover en colonne */
+    .ks-discover-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .ks-discover-card .ks-avatar-img,
+    .ks-discover-card .ks-avatar-placeholder {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    .ks-discover-card .ks-btn-go-artist {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Formulaires */
+    .col-md-5,
+    .col-md-6 {
+        padding: 0 0.5rem;
+    }
+
+    /* Padding pour navbar du bas */
+    body {
+        padding-bottom: 5rem;
+    }
+
+    /* Dashboard */
+    .ks-avatar-img,
+    .ks-avatar-placeholder {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .ks-dashboard-username {
+        font-size: 1.3rem !important;
+    }
+
+    .ks-dashboard-welcome {
+        display: none;
+    }
+}
+
+/* ===== DESKTOP — cache éléments mobile ===== */
+@media (min-width: 769px) {
+
+    .ks-mobile-header,
+    .ks-mobile-menu,
+    .ks-mobile-nav {
+        display: none !important;
+    }
 }

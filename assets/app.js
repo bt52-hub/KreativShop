@@ -27,7 +27,7 @@ function initRoleButtons() {
     });
 }
 
-// --- Carrousel homepage ---
+// --- Carrousel ---
 function initCarousel() {
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('carouselPrev');
@@ -63,8 +63,6 @@ function initProductPage() {
     const btnBuy = document.getElementById('btn-buy');
     if (!templateOptions.length || !productButtons) return;
 
-    let selectedProductId = null;
-
     function loadTemplate(templateEl) {
         templateOptions.forEach(t => t.classList.remove('active'));
         templateEl.classList.add('active');
@@ -82,7 +80,6 @@ function initProductPage() {
             btn.addEventListener('click', () => {
                 productButtons.querySelectorAll('.ks-product-btn-support').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                selectedProductId = product.id;
                 priceDisplay.textContent = parseFloat(product.price).toFixed(0) + ' €';
                 btnBuy.href = '/cart/add/' + product.id;
             });
@@ -90,7 +87,6 @@ function initProductPage() {
             productButtons.appendChild(btn);
 
             if (index === 0) {
-                selectedProductId = product.id;
                 priceDisplay.textContent = parseFloat(product.price).toFixed(0) + ' €';
                 btnBuy.href = '/cart/add/' + product.id;
             }
@@ -103,15 +99,31 @@ function initProductPage() {
     });
 }
 
+// --- Menu mobile ---
+function initMobileMenu() {
+    const burger = document.getElementById('mobileMenuOpen');
+    const menu = document.getElementById('mobileMenu');
+
+    if (!burger || !menu) return;
+
+    burger.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        burger.classList.toggle('open', isOpen);
+    });
+
+    // Ferme le menu au clic sur un lien
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('open');
+            burger.classList.remove('open');
+        });
+    });
+}
+
 // ===== DÉCLENCHEMENT =====
 document.addEventListener('DOMContentLoaded', () => {
     initRoleButtons();
     initCarousel();
     initProductPage();
-});
-
-document.addEventListener('turbo:load', () => {
-    initRoleButtons();
-    initCarousel();
-    initProductPage();
+    initMobileMenu();
 });

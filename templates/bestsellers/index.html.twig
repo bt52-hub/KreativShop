@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bestsellers — KreativShop
+{% endblock %}
+
+{% block body %}
+
+	<div class="ks-section-bar">
+		<img src="{{ asset('images/picto_logo_ks_B.png') }}" alt="" height="18">
+		<em>Bestsellers</em>
+	</div>
+
+	<div class="ks-bestsellers-wrapper">
+		<div class="ks-bestsellers-grid">
+			{% for artwork in artworks %}
+				<div class="ks-bestseller-item {% if loop.index == 1 %}ks-bestseller-large{% endif %}">
+					{% if artwork.fileUrl %}
+						<img src="{{ asset('uploads/artworks/' ~ artwork.fileUrl) }}" alt="{{ artwork.title }}">
+					{% endif %}
+					<div class="ks-bestseller-overlay">
+						<span>"{{ artwork.title }}"</span>
+						<a href="{{ path('app_product_show', {id: artwork.id}) }}">+ Shop</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}

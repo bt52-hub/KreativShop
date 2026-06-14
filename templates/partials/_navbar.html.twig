@@ -1,4 +1,4 @@
-<nav class="ks-navbar d-flex align-items-center justify-content-between px-4">
+<nav class="ks-navbar d-none d-md-flex align-items-center justify-content-between px-4">
 	<a href="{{ path('app_home') }}" class="text-decoration-none">
 		<img src="{{ asset('images/LOGO-KreativShop.png') }}" alt="KreativShop" height="40">
 	</a>
@@ -8,13 +8,13 @@
 			<a href="{{ path('app_home') }}" class="nav-link {% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}">Home</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link">News</a>
+			<a href="{{ path('app_news') }}" class="nav-link">News</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link">Bestsellers</a>
+			<a href="{{ path('app_bestsellers') }}" class="nav-link">Bestsellers</a>
 		</li>
 		<li>
-			<a href="#" class="nav-link">Discover</a>
+			<a href="{{ path('app_discover') }}" class="nav-link">Discover</a>
 		</li>
 		<li>
 			<a href="{{ path('app_contact') }}" class="nav-link">Contact</a>
