@@ -69,6 +69,26 @@ body {
     text-decoration: none;
 }
 
+.ks-basket {
+    position: relative;
+}
+
+.ks-cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: var(--ks-gold);
+    color: var(--ks-navy);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* ===== BURGER ===== */
 .ks-burger {
     background: none;
@@ -587,20 +607,19 @@ ul.form-errors li {
 }
 
 /* ===== DISCOVER ===== */
-.ks-discover-section {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem 3rem;
-    background-color: var(--ks-bg);
-}
+/* DESKTOP  */
 
 .ks-discover-card {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
-    gap: 2rem;
-    padding: 1.5rem 0;
+
+    gap: 3rem;
+
+    padding: 2rem 3rem;
+
     border-bottom: 1px solid #eee;
 }
 
@@ -608,44 +627,77 @@ ul.form-errors li {
     border-bottom: none;
 }
 
-.ks-discover-img {
-    width: 280px;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 6px;
+/* bloc gauche */
+.ks-discover-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 1rem;
 }
 
+.ks-discover-img,
 .ks-discover-placeholder {
     width: 280px;
+
     height: 320px;
-    background-color: #aaa;
-    border-radius: 6px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+/* bloc droite */
+.ks-discover-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    flex: 1;
+
+    text-align: left;
 }
 
 .ks-discover-text h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+
     font-weight: 700;
+
     margin-bottom: 1rem;
 }
 
 .ks-discover-text p {
     color: #555;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+
+    line-height: 1.7;
+
+    margin-bottom: 2rem;
 }
 
 .ks-btn-go-artist {
     background-color: var(--ks-blue);
+
     color: white;
+
     padding: 0.5rem 1.5rem;
+
     border-radius: 4px;
+
     text-decoration: none;
+
     font-weight: 600;
-    white-space: nowrap;
+
+    width: fit-content;
 }
 
 .ks-btn-go-artist:hover {
     background-color: #1a3aaa;
+
     color: white;
 }
 
@@ -828,7 +880,7 @@ ul.form-errors li {
         left: 0;
         right: 0;
         background-color: var(--ks-navy);
-        
+
         border-top: 2px solid var(--ks-gold);
         z-index: 1000;
         padding: 0.75rem 0;
@@ -849,9 +901,28 @@ ul.form-errors li {
     }
 
     /* Carrousel 2 items */
+    .ks-carousel-track {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+
+        -webkit-overflow-scrolling: touch;
+
+        scrollbar-width: none;
+    }
+
+    .ks-carousel-track::-webkit-scrollbar {
+        display: none;
+    }
+
     .ks-carousel-item {
-        min-width: calc(50% - 0.5rem) !important;
-        max-width: calc(50% - 0.5rem) !important;
+        flex: 0 0 48%;
+        max-width: 48%;
+        scroll-snap-align: start;
+    }
+
+    .ks-carousel-arrow {
+        width: 40px;
+        height: 40px;
     }
 
     /* Cards */
@@ -865,45 +936,65 @@ ul.form-errors li {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 1rem;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
     }
 
-    .ks-discover-card .ks-avatar-img,
-    .ks-discover-card .ks-avatar-placeholder {
-        width: 100px !important;
-        height: 100px !important;
-    }
-
-    .ks-discover-card .ks-btn-go-artist {
+    /* Images centrées côte à côte */
+    .ks-discover-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        text-align: center;
+        gap: 10px;
     }
 
-    /* Formulaires */
-    .col-md-5,
-    .col-md-6 {
-        padding: 0 0.5rem;
+    .ks-discover-img,
+    .ks-discover-placeholder {
+        width: calc(50% - 5px);
+        max-width: 160px;
+        height: 180px;
     }
 
-    /* Padding pour navbar du bas */
-    body {
-        padding-bottom: 5rem;
+    .ks-discover-text {
+        width: 100%;
+        align-items: center;
     }
 
-    /* Dashboard */
-    .ks-avatar-img,
-    .ks-avatar-placeholder {
-        width: 80px !important;
-        height: 80px !important;
+    .ks-discover-text h2 {
+        font-size: 1.7rem;
     }
 
-    .ks-dashboard-username {
-        font-size: 1.3rem !important;
+    .ks-btn-go-artist {
+        width: 220px;
+        margin: auto;
     }
+}
 
-    .ks-dashboard-welcome {
-        display: none;
-    }
+/* Formulaires */
+.col-md-5,
+.col-md-6 {
+    padding: 0 0.5rem;
+}
+
+/* Padding pour navbar du bas */
+body {
+    padding-bottom: 5rem;
+}
+
+/* Dashboard */
+.ks-avatar-img,
+.ks-avatar-placeholder {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.ks-dashboard-username {
+    font-size: 1.3rem !important;
+}
+
+.ks-dashboard-welcome {
+    display: none;
 }
 
 /* ===== DESKTOP — cache éléments mobile ===== */

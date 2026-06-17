@@ -21,7 +21,7 @@ class ContactFormType extends AbstractType
                 'label' => false,
                 'attr' => ['placeholder' => 'Your name', 'class' => 'ks-input'],
                 'constraints' => [
-                    new NotBlank(message: 'Le nom est obligatoire'),
+                    new NotBlank(message: 'The name is required'),
                     new Length(min: 2, max: 100),
                 ],
             ])
@@ -29,15 +29,15 @@ class ContactFormType extends AbstractType
                 'label' => false,
                 'attr' => ['placeholder' => 'Your email', 'class' => 'ks-input'],
                 'constraints' => [
-                    new NotBlank(message: 'L\'email est obligatoire'),
-                    new Email(message: 'Email invalide'),
+                    new NotBlank(message: 'The email is required'),
+                    new Email(message: 'Email not valid'),
                 ],
             ])
             ->add('subject', TextType::class, [
                 'label' => false,
                 'attr' => ['placeholder' => 'Subject', 'class' => 'ks-input'],
                 'constraints' => [
-                    new NotBlank(message: 'Le sujet est obligatoire'),
+                    new NotBlank(message: 'The subject is required'),
                 ],
             ])
             ->add('message', TextareaType::class, [
@@ -48,8 +48,8 @@ class ContactFormType extends AbstractType
                     'rows' => 6,
                 ],
                 'constraints' => [
-                    new NotBlank(message: 'Le message est obligatoire'),
-                    new Length(min: 10, minMessage: 'Le message doit faire au moins {{ limit }} caractères'),
+                    new NotBlank(message: 'The message is required'),
+                    new Length(min: 10, minMessage: 'Message must be at least {{ limit }} characters'),
                 ],
             ])
         ;

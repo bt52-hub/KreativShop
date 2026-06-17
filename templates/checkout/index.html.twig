@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-4">
+		<div class="ks-card">
+			<h1 class="ks-card-title">Checkout</h1>
+
+			<div
+				class="row">
+				{# Récap commande #}
+				<div class="col-md-7">
+					<p class="ks-product-label">Order summary :</p>
+					<table class="table">
+						<tbody>
+							{% for item in items %}
+								<tr>
+									<td>{{ item.product.template.artwork.title }}
+										—
+										{{ item.product.template.name }}
+										({{ item.product.type.value }})</td>
+									<td>x{{ item.quantity }}</td>
+									<td class="text-end">{{ item.subtotal }}
+										€</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="2" class="fw-bold text-end">Total :</td>
+								<td class="fw-bold text-end">{{ total }}
+									€</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+
+				{# Adresse de livraison #}
+				<div class="col-md-5">
+					<p class="ks-product-label">Shipping address :</p>
+					<div class="ks-profile-card mb-3">
+						{% if user.address %}
+							<p class="mb-0">{{ user.firstname }}
+								{{ user.name }}</p>
+							<p class="mb-0">{{ user.address }}</p>
+						{% else %}
+							<p class="text-muted mb-0">No address set.</p>
+							<a href="{{ path('app_dashboard_customer_edit') }}">Add an address</a>
+						{% endif %}
+					</div>
+
+					<p class="ks-product-label">Payment :</p>
+					<p class="text-muted" style="font-size:0.85rem">
+						This is a simulated payment for demonstration purposes.
+					</p>
+
+					<form method="post" action="{{ path('app_checkout_confirm') }}">
+						<button type="submit" class="ks-btn-primary">Confirm order</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

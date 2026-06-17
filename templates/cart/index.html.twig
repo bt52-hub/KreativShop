@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Basket — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-4">
+		<div class="ks-card">
+			<h1 class="ks-card-title">My Basket</h1>
+
+			{% if items is empty %}
+				<p class="text-muted text-center py-4">Your basket is empty.</p>
+				<a href="{{ path('app_home') }}" class="ks-btn-secondary">Continue shopping</a>
+			{% else %}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Artwork</th>
+							<th>Support</th>
+							<th>Price</th>
+							<th>Qty</th>
+							<th>Subtotal</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in items %}
+							<tr>
+								<td>
+									{% if item.product.template.artwork.fileUrl %}
+										<img src="{{ asset('uploads/artworks/' ~ item.product.template.artwork.fileUrl) }}" alt="" width="60" height="60" style="object-fit:cover; border-radius:4px;">
+									{% endif %}
+									<span class="ms-2">{{ item.product.template.artwork.title }}</span>
+								</td>
+								<td>
+									{{ item.product.template.name }}<br>
+									<small class="text-muted">{{ item.product.type.value }}</small>
+								</td>
+								<td>{{ item.product.finalPrice }}
+									€</td>
+								<td>
+									<div class="d-flex align-items-center gap-2">
+										<a href="{{ path('app_cart_remove', {id: item.product.id}) }}" class="ks-btn-outline" style="padding:0.2rem 0.6rem">−</a>
+										<span>{{ item.quantity }}</span>
+										<a href="{{ path('app_cart_add', {id: item.product.id}) }}" class="ks-btn-outline" style="padding:0.2rem 0.6rem">+</a>
+									</div>
+								</td>
+								<td>
+									<strong>{{ item.subtotal }}
+										€</strong>
+								</td>
+								<td>
+									<a href="{{ path('app_cart_delete', {id: item.product.id}) }}" class="text-danger" style="font-size:1.2rem">✕</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4" class="text-end fw-bold">Total :</td>
+							<td colspan="2">
+								<strong>{{ total }}
+									€</strong>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+
+				<div class="d-flex justify-content-between mt-3">
+					<a href="{{ path('app_home') }}" class="ks-btn-secondary" style="width:auto; padding:0.75rem 2rem">
+						← Continue shopping
+					</a>
+					<a href="{{ path('app_checkout') }}" class="ks-btn-primary" style="width:auto; padding:0.75rem 2rem">
+						Checkout →
+					</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

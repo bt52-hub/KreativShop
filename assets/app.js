@@ -32,27 +32,25 @@ function initCarousel() {
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('carouselPrev');
     const nextBtn = document.getElementById('carouselNext');
+
     if (!track || !prevBtn || !nextBtn) return;
 
-    const items = track.querySelectorAll('.ks-carousel-item');
-    const itemsPerView = 4;
-    let currentIndex = 0;
-    const maxIndex = Math.max(0, items.length - itemsPerView);
-
-    function updateCarousel() {
-        const itemWidth = items[0].offsetWidth + 16;
-        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-    }
+    const scrollAmount = () =>
+        track.querySelector('.ks-carousel-item').offsetWidth + 16;
 
     nextBtn.addEventListener('click', () => {
-        if (currentIndex < maxIndex) { currentIndex++; updateCarousel(); }
+        track.scrollBy({
+            left: scrollAmount(),
+            behavior: 'smooth'
+        });
     });
 
     prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) { currentIndex--; updateCarousel(); }
+        track.scrollBy({
+            left: -scrollAmount(),
+            behavior: 'smooth'
+        });
     });
-
-    window.addEventListener('resize', updateCarousel);
 }
 
 // --- Page produit ---

@@ -31,9 +31,12 @@
 			<a href="{{ path('app_register') }}" class="ks-btn-signup">Sign up</a>
 			<a href="{{ path('app_login') }}" class="ks-btn-login">Login</a>
 		{% endif %}
-		<a href="#" class="ks-basket">
-			<i class="bi bi-bag fs-5"></i><br>
-			<span>Basket</span>
+		<a href="{{ path('app_cart') }}" class="ks-basket">
+			<i class="bi bi-bag fs-5"></i>
+			{% if cart_count > 0 %}
+				<span class="ks-cart-badge">{{ cart_count }}</span>
+			{% endif %}
+			<br><span>Basket</span>
 		</a>
 	</div>
 </nav>
