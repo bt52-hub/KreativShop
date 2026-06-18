@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New format — KreativShop
+{% endblock %}
+
+{% block body %}
+	<div class="container py-4">
+		<div class="ks-card">
+			<h1 class="ks-card-title">New format for "{{ artwork.title }}"</h1>
+
+			{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+			{{ form_row(form.name, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.width, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.height, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.basePrice, {'attr': {'class': 'ks-input'}}) }}
+			{{ form_row(form.submit) }}
+			{{ form_end(form) }}
+
+			<a href="{{ path('app_template_manage', {id: artwork.id}) }}" class="ks-btn-secondary mt-3">Cancel</a>
+		</div>
+	</div>
+{% endblock %}

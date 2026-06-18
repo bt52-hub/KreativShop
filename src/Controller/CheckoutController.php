@@ -9,7 +9,6 @@ use App\Enum\OrderStatus;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -49,10 +48,9 @@ class CheckoutController extends AbstractController
 
         if (empty($items)) {
             $this->addFlash('error', 'Your basket is empty.');
+
             return $this->redirectToRoute('app_cart');
         }
-
-        $user = $this->getUser();
 
         if (!$user->getAddress()) {
             $this->addFlash(
@@ -60,7 +58,7 @@ class CheckoutController extends AbstractController
                 'Veuillez renseigner une adresse de livraison avant de commander.'
             );
 
-            return $this->redirectToRoute('app_profile_edit');
+            return $this->redirectToRoute('app_dashboard_customer_edit');
         }
 
         // Création de la commande

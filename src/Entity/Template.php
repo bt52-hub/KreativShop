@@ -19,7 +19,7 @@ class Template
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $base_price = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'templates')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Artwork $artwork = null;
 

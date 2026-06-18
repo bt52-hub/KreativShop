@@ -53,6 +53,20 @@
 						<a href="{{ path('app_artwork_new') }}" class="ks-section-title">
 							Upload File
 						</a>
+						<h5 class="ks-section-title mt-4">My purchases</h5>
+						{% if orders is not empty %}
+							<ul class="list-unstyled">
+								{% for order in orders %}
+									<li class="ks-order-item">
+										<span>Order #{{ order.id }}</span>
+										<span>{{ order.totalAmount }}€</span>
+										<span class="badge bg-primary">{{ order.status.value }}</span>
+									</li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							<p class="text-muted">No orders yet.</p>
+						{% endif %}
 					</div>
 				</div>
 
@@ -70,6 +84,7 @@
 										<p class="mt-1 mb-0 small">{{ artwork.title }}</p>
 										<div class="d-flex gap-2">
 											<a href="{{ path('app_artwork_edit', {id: artwork.id}) }}" class="small text-primary">Edit</a>
+											<a href="{{ path('app_template_manage', {id: artwork.id}) }}" class="small text-primary">Manage</a>
 										</div>
 									</div>
 								</div>

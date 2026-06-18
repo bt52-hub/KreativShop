@@ -38,17 +38,22 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/dashboard/artist', name: 'app_dashboard_artist')]
-    public function artist(EntityManagerInterface $em, ArtworkRepository $artworkRepo): Response
-    {
+    public function artist(
+        EntityManagerInterface $em,
+        ArtworkRepository $artworkRepo,
+        OrderRepository $orderRepo
+    ): Response {
         $user = $this->getUser();
         assert($user instanceof User);
 
         $artist = $em->getRepository(Artist::class)->findOneBy(['user' => $user]);
         $artworks = $artist ? $artworkRepo->findBy(['artist' => $artist]) : [];
+        $orders = $orderRepo->findBy(['user' => $user]);
 
         return $this->render('dashboard/artist.html.twig', [
             'user' => $user,
             'artworks' => $artworks,
+            'orders' => $orders,
         ]);
     }
 

@@ -6,6 +6,9 @@ use App\Repository\ArtworkRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Entity\Template;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: ArtworkRepository::class)]
 #[Vich\Uploadable]
@@ -33,6 +36,14 @@ class Artwork
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Artist $artist = null;
+
+    #[ORM\OneToMany(mappedBy: 'artwork', targetEntity: Template::class)]
+    private Collection $templates;
+
+    public function __construct()
+    {
+        $this->templates = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -94,6 +105,32 @@ class Artwork
     public function setArtist(?Artist $artist): static
     {
         $this->artist = $artist;
+        return $this;
+    }
+
+    public function getTemplates(): Collection
+    {
+        return $this->templates;
+    }
+
+    public function addTemplate(Template $template): static
+    {
+        if (!$this->templates->contains($template)) {
+            $this->templates->add($template);
+            $template->setArtwork($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplate(Template $template): static
+    {
+        if ($this->templates->removeElement($template)) {
+            if ($template->getArtwork() === $this) {
+                $template->setArtwork(null);
+            }
+        }
+
         return $this;
     }
 }
