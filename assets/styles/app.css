@@ -853,6 +853,33 @@ ul.form-errors li {
     color: white;
 }
 
+
+/* Formulaires */
+.col-md-5,
+.col-md-6 {
+    padding: 0 0.5rem;
+}
+
+/* Padding pour navbar du bas */
+body {
+    padding-bottom: 5rem;
+}
+
+/* Dashboard */
+.ks-avatar-img,
+.ks-avatar-placeholder {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.ks-dashboard-username {
+    font-size: 1.3rem !important;
+}
+
+.ks-dashboard-welcome {
+    display: none;
+}
+
 /* ===== RESPONSIVE MOBILE ===== */
 @media (max-width: 768px) {
 
@@ -915,9 +942,9 @@ ul.form-errors li {
     }
 
     .ks-carousel-item {
-        flex: 0 0 48%;
-        max-width: 48%;
-        scroll-snap-align: start;
+        flex: 0 0 100%;
+        max-width: 100%;
+        scroll-snap-align: center;
     }
 
     .ks-carousel-arrow {
@@ -971,30 +998,59 @@ ul.form-errors li {
     }
 }
 
-/* Formulaires */
-.col-md-5,
-.col-md-6 {
-    padding: 0 0.5rem;
-}
+/* ===== TABLETTE (768px - 1024px) ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
 
-/* Padding pour navbar du bas */
-body {
-    padding-bottom: 5rem;
-}
+    /* Navbar */
+    .ks-navbar {
+        padding: 0.75rem 1rem;
+    }
 
-/* Dashboard */
-.ks-avatar-img,
-.ks-avatar-placeholder {
-    width: 80px !important;
-    height: 80px !important;
-}
+    .ks-navbar .nav-link {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.9rem;
+    }
 
-.ks-dashboard-username {
-    font-size: 1.3rem !important;
-}
+    /* Carrousel 2 items */
+    .ks-carousel-item {
+        min-width: calc(50% - 0.5rem) !important;
+        max-width: calc(50% - 0.5rem) !important;
+    }
 
-.ks-dashboard-welcome {
-    display: none;
+    /* Bestsellers 2 colonnes */
+    .ks-bestsellers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ks-bestseller-large {
+        grid-row: span 1;
+    }
+
+    .ks-bestseller-item img {
+        height: 200px;
+    }
+
+    /* Discover */
+    .ks-discover-card {
+        gap: 1.5rem;
+        padding: 1.5rem 2rem;
+    }
+
+    .ks-discover-img,
+    .ks-discover-placeholder {
+        width: 180px;
+        height: 220px;
+    }
+
+    /* Dashboard */
+    .ks-dashboard-welcome {
+        font-size: 1rem;
+    }
+
+    /* Product */
+    .ks-product-img {
+        max-height: 400px;
+    }
 }
 
 /* ===== DESKTOP — cache éléments mobile ===== */
