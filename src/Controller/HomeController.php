@@ -30,8 +30,10 @@ class HomeController extends AbstractController
             ? $artworkRepo->findBy(['artist' => $lastArtist], ['created_at' => 'DESC'], 2)
             : [];
 
-        // BESTSELLERS : 9 derniers artworks uploadés
-        $bestsellerArtworks = $artworkRepo->findBy([], ['created_at' => 'DESC'], 9);
+        // BESTSELLERS : aléatoire
+        $allArtworks = $artworkRepo->findAll();
+        shuffle($allArtworks);
+        $bestsellerArtworks = array_slice($allArtworks, 0, 9);
 
         return $this->render('home/index.html.twig', [
             'newArtworks' => $newArtworks,

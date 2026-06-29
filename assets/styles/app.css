@@ -14,6 +14,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
 }
 
 /* ===== NAVBAR DESKTOP ===== */
@@ -288,6 +289,7 @@ body {
     background-color: var(--ks-navy);
     color: var(--ks-white);
     margin-top: auto;
+    margin-bottom: 50px;
 }
 
 .ks-footer .bi {
@@ -860,11 +862,6 @@ ul.form-errors li {
     padding: 0 0.5rem;
 }
 
-/* Padding pour navbar du bas */
-body {
-    padding-bottom: 5rem;
-}
-
 /* Dashboard */
 .ks-avatar-img,
 .ks-avatar-placeholder {
@@ -998,23 +995,43 @@ body {
     }
 }
 
-/* ===== TABLETTE (768px - 1024px) ===== */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* ===== TABLETTE (768px - 920px) ===== */
+@media (min-width: 769px) and (max-width: 920px) {
 
-    /* Navbar */
+    /* Cache navbar desktop */
+    nav.ks-navbar,
     .ks-navbar {
+        display: none !important;
+    }
+
+    /* Header mobile visible */
+    .ks-mobile-header {
+        display: flex !important;
+        background-color: var(--ks-navy);
+        border-bottom: 2px solid var(--ks-gold);
         padding: 0.75rem 1rem;
+        align-items: center;
+        justify-content: center;
     }
 
-    .ks-navbar .nav-link {
-        padding: 0.5rem 0.6rem;
-        font-size: 0.9rem;
+    /* Navbar burger fixe en bas */
+    .ks-mobile-nav {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--ks-navy);
+        border-top: 2px solid var(--ks-gold);
+        z-index: 1000;
+        padding: 0.75rem 0;
+        justify-content: center;
     }
 
-    /* Carrousel 2 items */
+    /* Carrousel 3 items */
     .ks-carousel-item {
-        min-width: calc(50% - 0.5rem) !important;
-        max-width: calc(50% - 0.5rem) !important;
+        min-width: calc(33.333% - 0.67rem) !important;
+        max-width: calc(33.333% - 0.67rem) !important;
     }
 
     /* Bestsellers 2 colonnes */
@@ -1054,7 +1071,7 @@ body {
 }
 
 /* ===== DESKTOP — cache éléments mobile ===== */
-@media (min-width: 769px) {
+@media (min-width: 921px) {
 
     .ks-mobile-header,
     .ks-mobile-menu,

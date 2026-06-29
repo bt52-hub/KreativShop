@@ -14,15 +14,15 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
     {
         $productsData = [
             ['template' => 'template-0', 'type' => ProductType::Dibond, 'price' => 150,  'desc' => 'Printed on Dibond, metallic finish.'],
-            ['template' => 'template-0', 'type' => ProductType::Plexi,  'price' => 200, 'desc' => 'Printed under plexiglass, glossy effect.'],
-            ['template' => 'template-1', 'type' => ProductType::Dibond, 'price' => 150, 'desc' => 'Printed on Dibond, metallic finish.'],
-            ['template' => 'template-1', 'type' => ProductType::Plexi,  'price' => 200, 'desc' => 'Printed under plexiglass, glossy effect.'],
+            ['template' => 'template-0', 'type' => ProductType::Plexi,  'price' => 200,  'desc' => 'Printed under plexiglass, glossy effect.'],
+            ['template' => 'template-1', 'type' => ProductType::Dibond, 'price' => 150,  'desc' => 'Printed on Dibond, metallic finish.'],
+            ['template' => 'template-1', 'type' => ProductType::Plexi,  'price' => 200,  'desc' => 'Printed under plexiglass, glossy effect.'],
             ['template' => 'template-2', 'type' => ProductType::Dibond, 'price' => 150,  'desc' => 'Printed on Dibond, metallic finish.'],
-            ['template' => 'template-2', 'type' => ProductType::Plexi,  'price' => 200, 'desc' => 'Printed under plexiglass, glossy effect.'],
+            ['template' => 'template-2', 'type' => ProductType::Plexi,  'price' => 200,  'desc' => 'Printed under plexiglass, glossy effect.'],
             ['template' => 'template-3', 'type' => ProductType::Dibond, 'price' => 150,  'desc' => 'Printed on Dibond, metallic finish.'],
-            ['template' => 'template-3', 'type' => ProductType::Plexi,  'price' => 200, 'desc' => 'Printed under plexiglass, glossy effect.'],
+            ['template' => 'template-3', 'type' => ProductType::Plexi,  'price' => 200,  'desc' => 'Printed under plexiglass, glossy effect.'],
             ['template' => 'template-4', 'type' => ProductType::Dibond, 'price' => 150,  'desc' => 'Printed on Dibond, metallic finish.'],
-            ['template' => 'template-4', 'type' => ProductType::Plexi,  'price' => 200, 'desc' => 'Printed under plexiglass, glossy effect.'],
+            ['template' => 'template-4', 'type' => ProductType::Plexi,  'price' => 200,  'desc' => 'Printed under plexiglass, glossy effect.'],
         ];
 
         foreach ($productsData as $data) {

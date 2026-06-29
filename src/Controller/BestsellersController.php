@@ -12,7 +12,9 @@ class BestsellersController extends AbstractController
     #[Route('/bestsellers', name: 'app_bestsellers')]
     public function index(ArtworkRepository $artworkRepo): Response
     {
-        $artworks = $artworkRepo->findBy([], ['created_at' => 'DESC'], 12);
+        $artworks = $artworkRepo->findAll();
+        shuffle($artworks);
+        $artworks = array_slice($artworks, 0, 12);
 
         return $this->render('bestsellers/index.html.twig', [
             'artworks' => $artworks,
